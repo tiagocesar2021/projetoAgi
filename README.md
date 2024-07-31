@@ -1,7 +1,7 @@
 
 # Projeto de Automação de Testes
 
-Este repositório contém um projeto de automação de testes que utiliza **Selenium** para testes de interface de usuário (UI) e **Rest Assured** para testes de API.
+Este repositório contém um projeto de automação de testes que utiliza **Selenium** para testes de interface de usuário (UI).
 
 ## Índice
 
