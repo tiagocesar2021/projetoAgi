@@ -15,4 +15,4 @@ Funcionalidade: Validar resultados de pesquisa na lupa
   Cenário: Validar pesquisa de valor vazio na lupa
     Dado que estou na tela inicial do "BLOG_AGI"
     Quando pesquiso na lupa em branco
-    Entao o blogue retona "MENSAGEM_DE_ERRO"
+    Entao blogue retona "MENSAGEM_VAZIA"

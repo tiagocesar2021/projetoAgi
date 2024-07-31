@@ -25,5 +25,8 @@ public class IconPage {
     public WebElement erroMessage(){
         return driver.findElement(By.cssSelector(".page-content > p"));
     }
+    public WebElement MsgBranco(){
+        return driver.findElement(By.cssSelector(".page-title"));
+    }
 
 }

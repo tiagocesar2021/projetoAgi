@@ -55,9 +55,17 @@ public class AgiBankSteps {
 
     @Quando("pesquiso na lupa em branco")
     public void pesquiso_na_lupa_em_branco() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        WebElement botaoLupa = iconPage.getSearchIcon();
+        botaoLupa.click();
+        WebElement campoPesquisa = iconPage.getSearchField();
+        //campoPesquisa.sendKeys(AgiEnum.valueOf(valor).getVariacoes());
+        campoPesquisa.sendKeys(Keys.RETURN);
     }
 
-
+    @Entao("blogue retona {string}")
+    public void blogue_retona(String msgVazia) {
+        WebElement erroPesquisa = iconPage.MsgBranco();
+        String msgErro = erroPesquisa.getText();
+        Assert.assertEquals(AgiEnum.valueOf(msgVazia).getVariacoes(),msgErro);
+    }
 }
