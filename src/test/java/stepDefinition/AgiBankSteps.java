@@ -16,6 +16,7 @@ import util.Drivers;
 public class AgiBankSteps {
     private WebDriver driver;
     private IconPage iconPage;
+    public String report = "src\\test\\java\\reports\\reports" + Generator.dataHoraParaArquivo();
 
 
     @Dado("que estou na tela inicial do {string}")
@@ -31,17 +32,14 @@ public class AgiBankSteps {
         WebElement campoPesquisa = iconPage.getSearchField();
         campoPesquisa.sendKeys(AgiEnum.valueOf(emprestimos).getVariacoes());
         campoPesquisa.sendKeys(Keys.RETURN);
-
     }
-    @Entao("o blogue retona informações sobre empréstimos")
-    public void o_blogue_retona_informações_sobre_empréstimos() {
+    @Entao("o blogue retona informações {string}")
+    public void o_blogue_retona_informações_sobre(String resultadoCorreto) {
         WebElement campoTitulo = iconPage.titleField();
         String resultado = campoTitulo.getText();
-        Assert.assertEquals("Resultados encontrados para: empréstimo", resultado);
-        String screenshotArquivo = "src\\test\\java\\reports\\reports" + Generator.dataHoraParaArquivo() + "ValidarPesquisaDeValorValidoNaLupa.jpg";
-        Screenshot.tirar(driver, screenshotArquivo);
+        Assert.assertEquals(AgiEnum.valueOf(resultadoCorreto).getVariacoes(), resultado);
+        Screenshot.tirar(driver, report + "ValidarPesquisaDeValorValidoNaLupa.jpg");
     }
-
     @Quando("eu escrever na lupa {string} inválido")
     public void eu_escrever_na_lupa_inválido(String valor) {
         WebElement botaoLupa = iconPage.getSearchIcon();
@@ -55,24 +53,20 @@ public class AgiBankSteps {
         WebElement erroPesquisa = iconPage.erroMessage();
         String msgErro = erroPesquisa.getText();
         Assert.assertEquals(AgiEnum.valueOf(erro).getVariacoes(),msgErro);
-        String screenshotArquivo = "src\\test\\java\\reports\\reports" + Generator.dataHoraParaArquivo() + "ValidarPesquisaDeValorValidoNaLupa.jpg";
-        Screenshot.tirar(driver, screenshotArquivo);
+        Screenshot.tirar(driver,  report + "ValidarPesquisaDeValorInvalidoNaLupa.jpg");
     }
-
     @Quando("pesquiso na lupa em branco")
     public void pesquiso_na_lupa_em_branco() {
         WebElement botaoLupa = iconPage.getSearchIcon();
         botaoLupa.click();
         WebElement campoPesquisa = iconPage.getSearchField();
-        //campoPesquisa.sendKeys(AgiEnum.valueOf(valor).getVariacoes());
         campoPesquisa.sendKeys(Keys.RETURN);
     }
-
     @Entao("blogue retona {string}")
     public void blogue_retona(String msgVazia) {
         WebElement erroPesquisa = iconPage.MsgBranco();
         String msgErro = erroPesquisa.getText();
         Assert.assertEquals(AgiEnum.valueOf(msgVazia).getVariacoes(),msgErro);
-        Screenshot.tirar(driver, "src\\test\\java\\reports\\reports" + Generator.dataHoraParaArquivo() + "ValidarPesquisaDeValorVazioNaLupa.jpg");
+        Screenshot.tirar(driver, report + "ValidarPesquisaDeValorVazioNaLupa.jpg");
     }
 }

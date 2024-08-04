@@ -5,7 +5,7 @@ Funcionalidade: Validar resultados de pesquisa na lupa
   Cenário: Validar pesquisa de valor valido na lupa
     Dado que estou na tela inicial do "BLOG_AGI"
     Quando eu escrever na lupa a palavra "EMPRESTIMOS"
-    Entao o blogue retona informações sobre empréstimos
+    Entao o blogue retona informações "CORRETAS_DE_EMPRESTIMOS"
 
   Cenário: Validar pesquisa de valor invalido na lupa
     Dado que estou na tela inicial do "BLOG_AGI"
