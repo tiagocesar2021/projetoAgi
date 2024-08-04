@@ -1,5 +1,7 @@
 package stepDefinition;
 
+import Suporte.Generator;
+import Suporte.Screenshot;
 import enums.AgiEnum;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
@@ -36,6 +38,8 @@ public class AgiBankSteps {
         WebElement campoTitulo = iconPage.titleField();
         String resultado = campoTitulo.getText();
         Assert.assertEquals("Resultados encontrados para: empréstimo", resultado);
+        String screenshotArquivo = "src\\test\\java\\reports\\reports" + Generator.dataHoraParaArquivo() + "ValidarPesquisaDeValorValidoNaLupa.jpg";
+        Screenshot.tirar(driver, screenshotArquivo);
     }
 
     @Quando("eu escrever na lupa {string} inválido")
@@ -51,6 +55,8 @@ public class AgiBankSteps {
         WebElement erroPesquisa = iconPage.erroMessage();
         String msgErro = erroPesquisa.getText();
         Assert.assertEquals(AgiEnum.valueOf(erro).getVariacoes(),msgErro);
+        String screenshotArquivo = "src\\test\\java\\reports\\reports" + Generator.dataHoraParaArquivo() + "ValidarPesquisaDeValorValidoNaLupa.jpg";
+        Screenshot.tirar(driver, screenshotArquivo);
     }
 
     @Quando("pesquiso na lupa em branco")
@@ -67,5 +73,6 @@ public class AgiBankSteps {
         WebElement erroPesquisa = iconPage.MsgBranco();
         String msgErro = erroPesquisa.getText();
         Assert.assertEquals(AgiEnum.valueOf(msgVazia).getVariacoes(),msgErro);
+        Screenshot.tirar(driver, "src\\test\\java\\reports\\reports" + Generator.dataHoraParaArquivo() + "ValidarPesquisaDeValorVazioNaLupa.jpg");
     }
 }
