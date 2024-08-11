@@ -6,10 +6,10 @@ pipeline {
                 bat 'mvn clean install'
             }
         }
-        // stage('Test'){
-        //     steps{
-        //         bat 'mvn -Dtest=runner.RunnerCucumber'
-        //     }
-        // }
+        stage('Test'){
+            steps{
+                bat 'mvn Test'
+            }
+        }
     }
 }
