@@ -4,25 +4,22 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout do repositório na branch 'development'
-                git branch: 'development', url: 'https://github.com/seu-usuario/seu-repositorio.git'
+                git branch: 'development', url: 'https://github.com/tiagocesar2021/projetoAgi'
             }
         }
         stage('Build') {
             steps {
-                // Executar o build e os testes unitários (se houver)
                 sh 'mvn clean install'
             }
         }
         stage('Test') {
             steps {
-                // Executar os testes Cucumber com Selenium
                 sh 'mvn -Dtest=runner.RunnerCucumber'
             }
         }
     }
     post {
         always {
-            // Publicar resultados dos testes
             junit 'target/surefire-reports/*.xml'
             // Arquivar artefatos, se necessário
             archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
