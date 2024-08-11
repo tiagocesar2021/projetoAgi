@@ -3,8 +3,12 @@ pipeline {
     stages{
         stage('Build'){
             steps{
-                bat 'mvn clean package -DskipTest=true'
-            }   
+                bat 'mvn clean install'
+            }
+        stage('Test'){
+            steps{
+                bat 'mvn -Dtest=runner.RunnerCucumber'
+            }
         }
     }
 }
