@@ -10,18 +10,21 @@ import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.IconPage;
 import util.Drivers;
 
 public class AgiBankSteps {
-    private WebDriver driver;
+    private WebDriver driver = Drivers.getDriver();
     private IconPage iconPage;
     public String report = "src\\test\\java\\reports\\reports" + Generator.dataHoraParaArquivo();
 
 
+
     @Dado("que estou na tela inicial do {string}")
     public void que_estou_na_tela_inicial_do(String blogDoAgi) {
-        driver = Drivers.getDriver();
         driver.get(AgiEnum.valueOf(blogDoAgi).getVariacoes());
         iconPage = new IconPage(driver);
     }
@@ -39,6 +42,7 @@ public class AgiBankSteps {
         String resultado = campoTitulo.getText();
         Assert.assertEquals(AgiEnum.valueOf(resultadoCorreto).getVariacoes(), resultado);
         Screenshot.tirar(driver, report + "ValidarPesquisaDeValorValidoNaLupa.jpg");
+
     }
     @Quando("eu escrever na lupa {string} inválido")
     public void eu_escrever_na_lupa_inválido(String valor) {
