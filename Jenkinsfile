@@ -3,12 +3,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+                sh 'clean install'
             }
         }
         stage('Test') {
             steps {
-                sh 'mvn -Dtest=runner.RunnerCucumber'
+                sh 'Dtest=runner.RunnerCucumber'
             }
         }
     }
